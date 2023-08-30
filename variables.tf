@@ -3,16 +3,16 @@ variable "vpc_cidr" {
   type        = string
 }
 
+variable "names_prefix" {
+  description = "Prefix that is added to all resources names"
+  type        = string
+  default     = "atymoshy"
+}
+
 variable "vpc_name" {
   description = "VPC name"
   type        = string
   default     = "test"
-}
-
-variable "vpc_azs" {
-  description = "A list of VPC's AZs"
-  type        = list(string)
-  default     = ["euw1-az2"]
 }
 
 variable "public_subnets" {

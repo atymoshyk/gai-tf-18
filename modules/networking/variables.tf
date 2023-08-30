@@ -9,10 +9,10 @@ variable "vpc_name" {
   default     = "test"
 }
 
-variable "vpc_azs" {
-  description = "A list of VPC's AZs"
-  type        = list(string)
-  default     = ["euw1-az2"]
+variable "names_prefix" {
+  description = "Prefix that is added to all resources names"
+  type        = string
+  default     = "atymoshy"
 }
 
 variable "public_subnets" {
