@@ -53,3 +53,10 @@ variable "public_subnets_tags" {
   type        = map(any)
   default     = {}
 }
+
+# EC2 instances
+variable "instances" {
+  description = "EC2 instances map"
+  type        = map(any)
+  default     = {}
+}
