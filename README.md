@@ -1,3 +1,4 @@
 Init
 dummy
 continue
+finish
