@@ -2,13 +2,13 @@
 vpc_cidr = "10.0.0.0/16"
 subnets = {
   "public-subnet-1" = {
-    cidr = "10.0.20.0/22"
-    az   = "euw1-az2"
+    cidr   = "10.0.20.0/22"
+    az     = "euw1-az2"
     public = "yes"
   }
   "private-subnet-1" = {
-    cidr = "10.0.24.0/22"
-    az   = "euw1-az1"
+    cidr   = "10.0.24.0/22"
+    az     = "euw1-az1"
     public = "no"
   }
 }

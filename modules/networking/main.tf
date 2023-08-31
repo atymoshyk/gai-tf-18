@@ -20,7 +20,7 @@ resource "aws_subnet" "subnets" {
     var.shared_tags,
     var.vpc_tags,
     {
-      Name = "${var.names_prefix}-${each.key}-${each.value["az"]}",
+      Name   = "${var.names_prefix}-${each.key}-${each.value["az"]}",
       tfname = "${each.key}"
     },
   )
@@ -53,7 +53,7 @@ resource "aws_route_table" "public_rt" {
 }
 
 resource "aws_route_table_association" "public_rt" {
-  for_each = { for k, v in var.subnets : k => v if length(split("public", k)) > 1 }
+  for_each       = { for k, v in var.subnets : k => v if length(split("public", k)) > 1 }
   subnet_id      = aws_subnet.subnets[each.key].id
   route_table_id = aws_route_table.public_rt.id
 }
