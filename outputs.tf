@@ -10,6 +10,6 @@ output "private_subnets" {
   value = module.networking.private_subnets
 }
 
-output "instances" {
-  value = module.instances
-}
+# output "instances" {
+#   value = module.instances
+# }

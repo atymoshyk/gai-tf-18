@@ -15,14 +15,8 @@ variable "names_prefix" {
   default     = "atymoshy"
 }
 
-variable "public_subnets" {
-  description = "A list of public subnets inside the VPC"
-  type        = map(any)
-  default     = {}
-}
-
-variable "private_subnets" {
-  description = "A list of public subnets inside the VPC"
+variable "subnets" {
+  description = "A list of subnets inside the VPC"
   type        = map(any)
   default     = {}
 }
@@ -38,18 +32,6 @@ variable "shared_tags" {
 
 variable "vpc_tags" {
   description = "Tags that are applied to VPC resources"
-  type        = map(any)
-  default     = {}
-}
-
-variable "private_subnets_tags" {
-  description = "Tags that are applied to private subnets"
-  type        = map(any)
-  default     = {}
-}
-
-variable "public_subnets_tags" {
-  description = "Tags that are applied to public subnets"
   type        = map(any)
   default     = {}
 }

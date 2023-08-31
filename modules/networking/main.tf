@@ -9,9 +9,8 @@ resource "aws_vpc" "main" {
   )
 }
 
-# Public subnet resources
-resource "aws_subnet" "public_subnets" {
-  for_each = var.public_subnets
+resource "aws_subnet" "subnets" {
+  for_each = var.subnets
 
   availability_zone_id = each.value["az"]
   cidr_block           = each.value["cidr"]
@@ -21,29 +20,12 @@ resource "aws_subnet" "public_subnets" {
     var.shared_tags,
     var.vpc_tags,
     {
-      Name = "${var.names_prefix}-${each.key}-${each.value["az"]}"
+      Name = "${var.names_prefix}-${each.key}-${each.value["az"]}",
+      tfname = "${each.key}"
     },
   )
 }
 
-# Private subnet resources
-resource "aws_subnet" "private_subnets" {
-  for_each = var.private_subnets
-
-  availability_zone_id = each.value["az"]
-  cidr_block           = each.value["cidr"]
-  vpc_id               = aws_vpc.main.id
-
-  tags = merge(
-    var.shared_tags,
-    var.vpc_tags,
-    {
-      Name = "${var.names_prefix}-${each.key}-${each.value["az"]}"
-    },
-  )
-}
-
-#
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = merge(
@@ -71,7 +53,7 @@ resource "aws_route_table" "public_rt" {
 }
 
 resource "aws_route_table_association" "public_rt" {
-  for_each = aws_subnet.public_subnets
-  subnet_id      = each.value.id
+  for_each = { for k, v in var.subnets : k => v if length(split("public", k)) > 1 }
+  subnet_id      = aws_subnet.subnets[each.key].id
   route_table_id = aws_route_table.public_rt.id
 }

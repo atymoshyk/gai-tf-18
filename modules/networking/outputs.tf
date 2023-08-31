@@ -3,9 +3,9 @@ output "vpc_id" {
 }
 
 output "public_subnets" {
-  value = values(aws_subnet.public_subnets).*.id
+  value = local.public_subnets
 }
 
 output "private_subnets" {
-  value = values(aws_subnet.private_subnets).*.id
+  value = local.private_subnets
 }
