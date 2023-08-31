@@ -11,5 +11,5 @@ output "private_subnets" {
 }
 
 output "instances" {
-  value = module.instances
+  value = module.instances[*]
 }

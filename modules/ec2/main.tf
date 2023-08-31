@@ -13,7 +13,5 @@ resource "aws_instance" "instance" {
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
   key_name      = var.key_name
-  tags = {
-    Name = "${var.names_prefix}-${var.name}"
-  }
+  tags          = var.tags
 }

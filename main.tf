@@ -12,5 +12,9 @@ module "instances" {
   ami_arch      = each.value.ami_arch
   name          = each.key
   subnet_id     = local.instances_subnets[each.key][each.value.subnet_seq_num]
-  tags          = var.shared_tags
+  tags = {
+    "Owner" : "atymoshy",
+    "CreatedBy" : "Terraform",
+    "Name" : each.key
+  }
 }
